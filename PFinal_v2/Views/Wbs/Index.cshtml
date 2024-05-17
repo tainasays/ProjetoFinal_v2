@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PFinal_v2.Models.Wbs>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsChargeable)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsChargeable)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.WbsId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.WbsId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.WbsId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
