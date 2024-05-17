@@ -12,8 +12,8 @@ using PFinal_v2.Data;
 namespace PFinal_v2.Migrations
 {
     [DbContext(typeof(PFinal_v2Context))]
-    [Migration("20240517210401_MigrationReverseQuinzena")]
-    partial class MigrationReverseQuinzena
+    [Migration("20240517230537_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
