@@ -250,3 +250,4 @@ C:\Users\thayna.de.santana\Desktop\projetoFinal_v2\PFinal_v2\PFinal_v2\obj\Debug
 C:\Users\thayna.de.santana\Desktop\projetoFinal_v2\PFinal_v2\PFinal_v2\obj\Debug\net8.0\PFinal_v2.pdb
 C:\Users\thayna.de.santana\Desktop\projetoFinal_v2\PFinal_v2\PFinal_v2\obj\Debug\net8.0\PFinal_v2.genruntimeconfig.cache
 C:\Users\thayna.de.santana\Desktop\projetoFinal_v2\PFinal_v2\PFinal_v2\obj\Debug\net8.0\ref\PFinal_v2.dll
+C:\Users\thayna.de.santana\Desktop\projetoFinal_v2\PFinal_v2\PFinal_v2\obj\Debug\net8.0\PFinal_v2.sourcelink.json
