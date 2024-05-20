@@ -15,15 +15,58 @@ namespace PFinal_v2.Controllers
             _context = context;
         }
 
-     
 
-        // GET: Dias --------------------- * * *
+
+        //// GET: Dias --------------------- * * *
+        //public async Task<IActionResult> Index()
+        //{
+        //    int usuarioId = int.Parse(User.FindFirst("UsuarioId").Value);
+        //    var diasDoUsuario = await _context.Dia.Where(d => d.UsuarioId == usuarioId).ToListAsync();
+        //    // TODO ------------ * * * * * * Mudar para Wbs's que estão contidas nos lançamentos recuperados na linha acima
+        //    var wbsCadastrados = await _context.Wbs.ToListAsync();
+
+        //    var dataAtual = DateTime.Today;
+        //    List<Dia> diasDaQuinzena;
+
+        //    if (dataAtual.Day <= 15)
+        //    {
+        //        diasDaQuinzena = diasDoUsuario.Where(d => d.DiaData.Day >= 1 && d.DiaData.Day <= 15 && d.DiaData.Month == dataAtual.Month && d.DiaData.Year == dataAtual.Year).ToList();
+        //    }
+        //    else
+        //    {
+        //        diasDaQuinzena = diasDoUsuario.Where(d => d.DiaData.Day > 15 && d.DiaData.Month == dataAtual.Month && d.DiaData.Year == dataAtual.Year).ToList();
+        //    }
+
+        //    var dias = new DiaFormViewModel()
+        //    {
+        //        Lancamentos = diasDaQuinzena,
+        //        DataAtual = dataAtual,
+        //        ListaWbs = wbsCadastrados,
+        //    };
+
+        //    return View(dias);
+        //}
+
+
+
+
+
+
+
         public async Task<IActionResult> Index()
         {
             int usuarioId = int.Parse(User.FindFirst("UsuarioId").Value);
             var diasDoUsuario = await _context.Dia.Where(d => d.UsuarioId == usuarioId).ToListAsync();
-            // TODO ------------ * * * * * * Mudar para Wbs's que estão contidas nos lançamentos recuperados na linha acima
             var wbsCadastrados = await _context.Wbs.ToListAsync();
+
+            // Filtrar WBS que possuem horas registradas
+            var wbsComHoras = wbsCadastrados.Where(w => diasDoUsuario.Any(d => d.WbsId == w.WbsId && d.Horas > 0)).ToList();
+
+            // Adicionar WBS vazias à lista até que ela tenha pelo menos 5 elementos
+            while (wbsComHoras.Count < 4)
+            {
+                wbsComHoras.Add(new Wbs());
+            }
 
             var dataAtual = DateTime.Today;
             List<Dia> diasDaQuinzena;
@@ -41,11 +84,17 @@ namespace PFinal_v2.Controllers
             {
                 Lancamentos = diasDaQuinzena,
                 DataAtual = dataAtual,
-                ListaWbs = wbsCadastrados,
+                ListaWbs = wbsComHoras, // Passar a lista filtrada para a View
             };
 
             return View(dias);
         }
+
+
+
+
+
+
 
 
 
@@ -178,5 +227,7 @@ namespace PFinal_v2.Controllers
         {
             return _context.Dia.Any(e => e.DiaId == id);
         }
+
+
     }
-}
+    }
