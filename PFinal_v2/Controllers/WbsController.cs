@@ -20,10 +20,28 @@ namespace PFinal_v2.Controllers
         }
 
         // GET: Wbs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, int? id)
         {
-            return View(await _context.Wbs.ToListAsync());
+            if (_context.Wbs == null)
+            {
+               return Problem("Entidate sem Dados.. Null");
+           }
+
+            var wbss = from w in _context.Wbs select w;
+
+           if (!String.IsNullOrEmpty(searchString))
+           {
+                wbss = wbss.Where(s => s.Codigo != null && s.Codigo.Contains(searchString) ||
+                                 s.Descricao != null && s.Descricao.Contains(searchString));
+
+           }
+
+           
+            return View(await wbss.ToListAsync());
         }
+
+        
+           
 
         // GET: Wbs/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -153,5 +171,8 @@ namespace PFinal_v2.Controllers
         {
             return _context.Wbs.Any(e => e.WbsId == id);
         }
+
+        
+
     }
 }

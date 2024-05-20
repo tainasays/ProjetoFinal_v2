@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PFinal_v2.Data;
+using PFinal_v2.Models;
 using System.Security.Claims;
 namespace PFinal_v2
 {
@@ -41,9 +42,13 @@ namespace PFinal_v2
             builder.Services.AddScoped<LoginService>();
 
 
-
-
             var app = builder.Build();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                WbsData.Initialize(services);
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -63,6 +68,8 @@ namespace PFinal_v2
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            
 
             app.Run();
         }
