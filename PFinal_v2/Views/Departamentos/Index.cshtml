@@ -28,6 +28,12 @@
                 <a asp-action="Edit" asp-route-id="@item.DepartamentoId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.DepartamentoId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.DepartamentoId">Delete</a>
+                    @* <form asp-controller="Movies" asp-action="Index">
+                <p>
+                Title: <input type="text" name="SearchString" />
+                <input type="submit" value="Filter" />
+                </p>
+                </form> @ @ //filtro pra pesquisar *@
             </td>
         </tr>
 }

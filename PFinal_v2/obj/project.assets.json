@@ -7911,19 +7911,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\thayna.de.santana\\.nuget\\packages\\": {}
+    "C:\\Users\\natalia.madeira\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thayna.de.santana\\Desktop\\projetoFinal_v2\\PFinal_v2\\PFinal_v2\\PFinal_v2.csproj",
+      "projectUniqueName": "C:\\Users\\natalia.madeira\\Desktop\\ProjetoFinal_v2\\PFinal_v2\\PFinal_v2.csproj",
       "projectName": "PFinal_v2",
-      "projectPath": "C:\\Users\\thayna.de.santana\\Desktop\\projetoFinal_v2\\PFinal_v2\\PFinal_v2\\PFinal_v2.csproj",
-      "packagesPath": "C:\\Users\\thayna.de.santana\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thayna.de.santana\\Desktop\\projetoFinal_v2\\PFinal_v2\\PFinal_v2\\obj\\",
+      "projectPath": "C:\\Users\\natalia.madeira\\Desktop\\ProjetoFinal_v2\\PFinal_v2\\PFinal_v2.csproj",
+      "packagesPath": "C:\\Users\\natalia.madeira\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\natalia.madeira\\Desktop\\ProjetoFinal_v2\\PFinal_v2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\thayna.de.santana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\natalia.madeira\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8002,7 +8002,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
