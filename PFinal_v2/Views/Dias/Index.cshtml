@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PFinal_v2.Models.Dia>
+﻿@* @model IEnumerable<PFinal_v2.Models.Dia>
 
 @{
     ViewData["Title"] = "Index";
@@ -52,4 +52,403 @@
         </tr>
 }
     </tbody>
+</table> 
+*@
+
+@* @model PFinal_v2.Models.ViewModels.DiaFormViewModel
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Wbs</th>
+            @if (Model.DataAtual.Day <= 15)
+            {
+                foreach (var dia in Enumerable.Range(1, 15))
+                {
+                    var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                    <th>@data.ToString("dd/MM/yyyy")</th>
+                }
+            }
+            else
+            {
+                foreach (var dia in Enumerable.Range(16, DateTime.DaysInMonth(Model.DataAtual.Year, Model.DataAtual.Month) - 15))
+                {
+                    var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                    <th>@data.ToString("dd/MM/yyyy")</th>
+                }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var grupo in Model.Lancamentos.GroupBy(l => l.WbsId))
+        {
+            <tr>
+                <td>@grupo.Key</td> <!-- WbsId -->
+                @if (Model.DataAtual.Day <= 15)
+                {
+                    foreach (var dia in Enumerable.Range(1, 15))
+                    {
+                        var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                        var lancamentoDoDia = grupo.FirstOrDefault(l => l.DiaData.Date == data);
+                        <td>
+                            @if (lancamentoDoDia != null)
+                            {
+                                @:@lancamentoDoDia.Horas
+                            }
+                        </td>
+                    }
+                }
+                else
+                {
+                    foreach (var dia in Enumerable.Range(16, DateTime.DaysInMonth(Model.DataAtual.Year, Model.DataAtual.Month) - 15))
+                    {
+                        var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                        var lancamentoDoDia = grupo.FirstOrDefault(l => l.DiaData.Date == data);
+                        <td>
+                            @if (lancamentoDoDia != null)
+                            {
+                                @:@lancamentoDoDia.Horas
+                            }
+                        </td>
+                    }
+                }
+            </tr>
+        }
+    </tbody>
+</table> 
+
+
+
+
+@model PFinal_v2.Models.ViewModels.DiaFormViewModel
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Wbs</th>
+            @if (Model.DataAtual.Day <= 15)
+            {
+                foreach (var dia in Enumerable.Range(1, 15))
+                {
+                    var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                    <th>@data.ToString("dd/MM")</th>
+                }
+            }
+            else
+            {
+                foreach (var dia in Enumerable.Range(16, DateTime.DaysInMonth(Model.DataAtual.Year, Model.DataAtual.Month) - 15))
+                {
+                    var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                    <th>@data.ToString("dd/MM")</th>
+                }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var wbs in Model.ListaWbs)
+        {
+            <tr>
+                <td>@wbs.Codigo</td> 
+                @if (Model.DataAtual.Day <= 15)
+                {
+                    foreach (var dia in Enumerable.Range(1, 15))
+                    {
+                        var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                        var lancamentoDoDia = Model.Lancamentos.FirstOrDefault(l => l.DiaData.Date == data && l.WbsId == wbs.WbsId);
+                        <td>
+                            @if (lancamentoDoDia != null)
+                            {
+                                @:@lancamentoDoDia.Horas
+                            }
+                        </td>
+                    }
+                }
+                else
+                {
+                    foreach (var dia in Enumerable.Range(16, DateTime.DaysInMonth(Model.DataAtual.Year, Model.DataAtual.Month) - 15))
+                    {
+                        var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                        var lancamentoDoDia = Model.Lancamentos.FirstOrDefault(l => l.DiaData.Date == data && l.WbsId == wbs.WbsId);
+                        <td>
+                            @if (lancamentoDoDia != null)
+                            {
+                                @:@lancamentoDoDia.Horas
+                            }
+                        </td>
+                    }
+                }
+            </tr>
+        }
+    </tbody>
 </table>
+
+
+
+
+
+                       @model PFinal_v2.Models.ViewModels.DiaFormViewModel
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Código de Custo</th>
+            @if (Model.DataAtual.Day <= 15)
+            {
+                foreach (var dia in Enumerable.Range(1, 15))
+                {
+                    var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                    <th>@data.ToString("dd/MM")</th>
+                }
+            }
+            else
+            {
+                foreach (var dia in Enumerable.Range(16, DateTime.DaysInMonth(Model.DataAtual.Year, Model.DataAtual.Month) - 15))
+                {
+                    var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                    <th>@data.ToString("dd/MM")</th>
+                }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var wbs in Model.ListaWbs)
+        {
+            <tr>
+                <td>@wbs.Codigo</td>
+                @if (Model.DataAtual.Day <= 15)
+                {
+                    foreach (var dia in Enumerable.Range(1, 15))
+                    {
+                        var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                        var lancamentoDoDia = Model.Lancamentos.FirstOrDefault(l => l.DiaData.Date == data && l.WbsId == wbs.WbsId);
+                        <td>
+                        <td>@if (wbs.Codigo != null)
+                                {
+                                    @wbs.Codigo
+                                }</td>
+
+                        </td>
+                    }
+                }
+                else
+                {
+                    foreach (var dia in Enumerable.Range(16, DateTime.DaysInMonth(Model.DataAtual.Year, Model.DataAtual.Month) - 15))
+                    {
+                        var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                        var lancamentoDoDia = Model.Lancamentos.FirstOrDefault(l => l.DiaData.Date == data && l.WbsId == wbs.WbsId);
+                        <td>
+                            @if (lancamentoDoDia != null && lancamentoDoDia.Horas > 0)
+                            {
+                                @:@lancamentoDoDia.Horas
+                            }
+
+                        </td>
+                    }
+                }
+            </tr>
+        }
+    </tbody>
+</table> 
+
+*@
+
+
+@* @model PFinal_v2.Models.ViewModels.DiaFormViewModel
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Código de Custo</th>
+            @if (Model.DataAtual.Day <= 15)
+            {
+                foreach (var dia in Enumerable.Range(1, 15))
+                {
+                    var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                    <th>@data.ToString("dd/MM")</th>
+                }
+            }
+            else
+            {
+                foreach (var dia in Enumerable.Range(16, DateTime.DaysInMonth(Model.DataAtual.Year, Model.DataAtual.Month) - 15))
+                {
+                    var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                    <th>@data.ToString("dd/MM")</th>
+                }
+            }
+        </tr>
+      
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>Local de Trabalho</td>
+            @if (Model.DataAtual.Day <= 15)
+            {
+                foreach (var dia in Enumerable.Range(1, 15))
+                {
+                    <td>RE</td>
+                }
+            }
+            else
+            {
+                foreach (var dia in Enumerable.Range(16, DateTime.DaysInMonth(Model.DataAtual.Year, Model.DataAtual.Month) - 15))
+                {
+                    <td>RE</td>
+                }
+            }
+        </tr>
+
+        @foreach (var wbs in Model.ListaWbs)
+        {
+            <tr>
+                <td>@wbs.Codigo</td>
+                @if (Model.DataAtual.Day <= 15)
+                {
+                    foreach (var dia in Enumerable.Range(1, 15))
+                    {
+                        var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                        var lancamentoDoDia = Model.Lancamentos.FirstOrDefault(l => l.DiaData.Date == data && l.WbsId == wbs.WbsId);
+                        <td>
+                            @if (wbs.Codigo != null)
+                            {
+                                @wbs.Codigo
+                            }
+                        </td>
+                    }
+                }
+                else
+                {
+                    foreach (var dia in Enumerable.Range(16, DateTime.DaysInMonth(Model.DataAtual.Year, Model.DataAtual.Month) - 15))
+                    {
+                        var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                        var lancamentoDoDia = Model.Lancamentos.FirstOrDefault(l => l.DiaData.Date == data && l.WbsId == wbs.WbsId);
+                        <td>
+                            @if (lancamentoDoDia != null && lancamentoDoDia.Horas > 0)
+                            {
+                                @:@lancamentoDoDia.Horas
+                            }
+                        </td>
+                    }
+                }
+            </tr>
+
+
+        }
+        
+       
+    </tbody>
+</table> *@
+
+
+ @model PFinal_v2.Models.ViewModels.DiaFormViewModel
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Código de Custo</th>
+            @if (Model.DataAtual.Day <= 15)
+            {
+                foreach (var dia in Enumerable.Range(1, 15))
+                {
+                    var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                    <th>@data.ToString("dd/MM")</th>
+                }
+            }
+            else
+            {
+                foreach (var dia in Enumerable.Range(16, DateTime.DaysInMonth(Model.DataAtual.Year, Model.DataAtual.Month) - 15))
+                {
+                    var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                    <th>@data.ToString("dd/MM")</th>
+                }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Local de Trabalho</td>
+            @if (Model.DataAtual.Day <= 15)
+            {
+                foreach (var dia in Enumerable.Range(1, 15))
+                {
+                    <td>RE</td>
+                }
+            }
+            else
+            {
+                foreach (var dia in Enumerable.Range(16, DateTime.DaysInMonth(Model.DataAtual.Year, Model.DataAtual.Month) - 15))
+                {
+                    <td>RE</td>
+                }
+            }
+        </tr>
+        @foreach (var wbs in Model.ListaWbs)
+        {
+            <tr>
+                <td>@wbs.Codigo</td>
+                @if (Model.DataAtual.Day <= 15)
+                {
+                    foreach (var dia in Enumerable.Range(1, 15))
+                    {
+                        var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                        var lancamentoDoDia = Model.Lancamentos.FirstOrDefault(l => l.DiaData.Date == data && l.WbsId == wbs.WbsId);
+                        <td>
+                            @if (wbs.Codigo != null)
+                            {
+                                @wbs.Codigo
+                            }
+                        </td>
+                    }
+                }
+                else
+                {
+                    foreach (var dia in Enumerable.Range(16, DateTime.DaysInMonth(Model.DataAtual.Year, Model.DataAtual.Month) - 15))
+                    {
+                        var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                        var lancamentoDoDia = Model.Lancamentos.FirstOrDefault(l => l.DiaData.Date == data && l.WbsId == wbs.WbsId);
+                        <td>
+                            @if (lancamentoDoDia != null && lancamentoDoDia.Horas > 0)
+                            {
+                                @:@lancamentoDoDia.Horas
+                            }
+                        </td>
+                    }
+                }
+            </tr>
+        }
+        <!-- Adicione uma nova linha para o total de horas diárias -->
+        <tr>
+            <td>Horas totais</td>
+            @if (Model.DataAtual.Day <= 15)
+            {
+                foreach (var dia in Enumerable.Range(1, 15))
+                {
+                    var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                    var lancamentosDoDia = Model.Lancamentos.Where(l => l.DiaData.Date == data);
+                    var totalHoras = lancamentosDoDia.Sum(l => l.Horas); // Soma das horas
+                    <td>@totalHoras</td>
+                }
+            }
+            else
+            {
+                foreach (var dia in Enumerable.Range(16, DateTime.DaysInMonth(Model.DataAtual.Year, Model.DataAtual.Month) - 15))
+                {
+                    var data = Model.DataAtual.AddDays(dia - Model.DataAtual.Day);
+                    var lancamentosDoDia = Model.Lancamentos.Where(l => l.DiaData.Date == data);
+                    var totalHoras = lancamentosDoDia.Sum(l => l.Horas); // Soma das horas
+                    <td>@totalHoras</td>
+                }
+            }
+        </tr>
+    </tbody>
+</table> 
+
+
+
+
+                   
+
+
+
+
+             
