@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -32,7 +31,10 @@ public class ContaController : Controller
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Nome),
-                new Claim(ClaimTypes.Role, user.IsAdmin ? "Admin" : "Colaborador")
+                new Claim(ClaimTypes.Role, user.IsAdmin ? "Admin" : "Colaborador"),
+
+   
+                new Claim("UsuarioId", user.UsuarioId.ToString())
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

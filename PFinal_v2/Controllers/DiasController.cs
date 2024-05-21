@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PFinal_v2.Data;
 using PFinal_v2.Models;
+using PFinal_v2.Models.ViewModels;
 
 namespace PFinal_v2.Controllers
 {
@@ -19,11 +15,40 @@ namespace PFinal_v2.Controllers
             _context = context;
         }
 
-        // GET: Dias
+     
+
+        // GET: Dias --------------------- * * *
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Dia.ToListAsync());
+            int usuarioId = int.Parse(User.FindFirst("UsuarioId").Value);
+            var diasDoUsuario = await _context.Dia.Where(d => d.UsuarioId == usuarioId).ToListAsync();
+            // TODO ------------ * * * * * * Mudar para Wbs's que estão contidas nos lançamentos recuperados na linha acima
+            var wbsCadastrados = await _context.Wbs.ToListAsync();
+
+            var dataAtual = DateTime.Today;
+            List<Dia> diasDaQuinzena;
+
+            if (dataAtual.Day <= 15)
+            {
+                diasDaQuinzena = diasDoUsuario.Where(d => d.DiaData.Day >= 1 && d.DiaData.Day <= 15 && d.DiaData.Month == dataAtual.Month && d.DiaData.Year == dataAtual.Year).ToList();
+            }
+            else
+            {
+                diasDaQuinzena = diasDoUsuario.Where(d => d.DiaData.Day > 15 && d.DiaData.Month == dataAtual.Month && d.DiaData.Year == dataAtual.Year).ToList();
+            }
+
+            var dias = new DiaFormViewModel()
+            {
+                Lancamentos = diasDaQuinzena,
+                DataAtual = dataAtual,
+                ListaWbs = wbsCadastrados,
+            };
+
+            return View(dias);
         }
+
+
+
 
         // GET: Dias/Details/5
         public async Task<IActionResult> Details(int? id)

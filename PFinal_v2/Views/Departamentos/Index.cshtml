@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PFinal_v2.Models.Departamento>
+﻿@model PFinal_v2.Models.ViewModels.DepartamentoFormViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -7,8 +7,24 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Criar Novo Departamento</a>
 </p>
+
+
+<form asp-controller="Departamentos" asp-action="Index" method="get">
+    <p>
+
+        <select asp-for="TipoDepartamentos" asp-items="Model.Nome">
+            <option value="">All</option>
+        </select>
+
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+
+
 <table class="table">
     <thead>
         <tr>
@@ -19,7 +35,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Departamentos!) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)

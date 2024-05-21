@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PFinal_v2.Data;
 using PFinal_v2.Models;
+using PFinal_v2.Models.ViewModels;
 
 namespace PFinal_v2.Controllers
 {
@@ -20,9 +21,40 @@ namespace PFinal_v2.Controllers
         }
 
         // GET: Departamentos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string tiposDepartamentos, string searchString)
         {
-            return View(await _context.Departamento.ToListAsync());
+            if (_context.Departamento == null)
+            {
+                return Problem("Entidate sem Dados.. Null");
+            }
+
+            IQueryable<string> departamentoQuery = from m in _context.Departamento
+                                                   orderby m.Nome
+                                                   select m.Nome;
+
+            var departamentos = from d in _context.Departamento select d;
+
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                departamentos = departamentos.Where(s => s.Nome!.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(tiposDepartamentos))
+            {
+                departamentos = departamentos.Where(x => x.Nome == tiposDepartamentos);
+            }
+
+            var tipoDepartamentosVM = new DepartamentoFormViewModel
+            {
+                Nome = new SelectList(await departamentoQuery.Distinct().ToListAsync()),
+                Departamentos = await departamentos.ToListAsync()
+
+            };
+
+            return View(tipoDepartamentosVM);
+
         }
 
         // GET: Departamentos/Details/5
@@ -155,3 +187,4 @@ namespace PFinal_v2.Controllers
         }
     }
 }
+
