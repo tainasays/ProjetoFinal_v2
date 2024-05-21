@@ -4,6 +4,6 @@
     {
         public List<Dia>? Lancamentos { get; set; }
         public DateTime DataAtual { get; set; }
-        public List<Wbs> ListaWbs { get; set; }
+        public List<Wbs>? ListaWbs { get; set; }
     }
 }
