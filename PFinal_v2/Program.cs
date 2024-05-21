@@ -2,7 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PFinal_v2.Data;
+using PFinal_v2.Models;
 using System.Security.Claims;
+using static System.Formats.Asn1.AsnWriter;
+
 namespace PFinal_v2
 {
     public class Program
@@ -16,7 +19,9 @@ namespace PFinal_v2
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            
 
+           
 
 
             // código ACRESCENTADO
@@ -40,10 +45,14 @@ namespace PFinal_v2
             //  a injeção de dependência para o serviço LoginService
             builder.Services.AddScoped<LoginService>();
 
-
-
-
             var app = builder.Build();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                UsuarioData.Initialize(services);
+            }
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

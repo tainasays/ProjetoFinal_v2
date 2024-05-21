@@ -1,14 +1,35 @@
-﻿namespace PFinal_v2.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Security.Cryptography;
+
+
+namespace PFinal_v2.Models
 {
     public class Usuario
     {
         public int UsuarioId { get; set; }
-        public string? Nome { get; set; }
-        public string? Email { get; set; }
-        public int DepartamentoId { get; set; }
-        public DateTime DataContratacao { get; set; }
-        public bool IsAdmin { get; set; }
-        public string? Senha { get; set; }
 
+        [Required(ErrorMessage = "O campo Nome é obrigatório")]
+        public string? Nome { get; set; }
+
+        [Display(Name = "E-mail")]
+        [Required(ErrorMessage = "O campo E-mail é obrigatório")]
+        public string? Email { get; set; }
+
+        [Display(Name = "Departamento ID")]
+        [Required(ErrorMessage = "O campo Departamento ID é obrigatório")]
+        public int DepartamentoId { get; set; }
+     
+        [Display(Name = "Data Contratação")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date)]
+        public DateTime DataContratacao { get; set; }
+
+        [Display(Name = "User Admin")]
+        public bool IsAdmin { get; set; }
+
+        [Required(ErrorMessage = "O campo Senha é obrigatório")]
+        public string? Senha { get; set; }
+                
     }
 }

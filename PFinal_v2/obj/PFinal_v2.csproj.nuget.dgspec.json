@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\thayna.de.santana\\Desktop\\projetoFinal_v2\\PFinal_v2\\PFinal_v2\\PFinal_v2.csproj": {}
+    "C:\\Users\\r.paz.da.silva.alves\\Desktop\\Projeto_Myte_1\\ProjetoFinal_v2\\PFinal_v2\\PFinal_v2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\thayna.de.santana\\Desktop\\projetoFinal_v2\\PFinal_v2\\PFinal_v2\\PFinal_v2.csproj": {
+    "C:\\Users\\r.paz.da.silva.alves\\Desktop\\Projeto_Myte_1\\ProjetoFinal_v2\\PFinal_v2\\PFinal_v2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thayna.de.santana\\Desktop\\projetoFinal_v2\\PFinal_v2\\PFinal_v2\\PFinal_v2.csproj",
+        "projectUniqueName": "C:\\Users\\r.paz.da.silva.alves\\Desktop\\Projeto_Myte_1\\ProjetoFinal_v2\\PFinal_v2\\PFinal_v2.csproj",
         "projectName": "PFinal_v2",
-        "projectPath": "C:\\Users\\thayna.de.santana\\Desktop\\projetoFinal_v2\\PFinal_v2\\PFinal_v2\\PFinal_v2.csproj",
-        "packagesPath": "C:\\Users\\thayna.de.santana\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thayna.de.santana\\Desktop\\projetoFinal_v2\\PFinal_v2\\PFinal_v2\\obj\\",
+        "projectPath": "C:\\Users\\r.paz.da.silva.alves\\Desktop\\Projeto_Myte_1\\ProjetoFinal_v2\\PFinal_v2\\PFinal_v2.csproj",
+        "packagesPath": "C:\\Users\\r.paz.da.silva.alves\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\r.paz.da.silva.alves\\Desktop\\Projeto_Myte_1\\ProjetoFinal_v2\\PFinal_v2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\thayna.de.santana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\r.paz.da.silva.alves\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
